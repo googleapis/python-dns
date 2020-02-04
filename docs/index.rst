@@ -76,7 +76,7 @@ suffix and has a set of name servers that accept and responds to queries:
 
      >>> from google.cloud import dns
      >>> client = dns.Client(project='PROJECT_ID')
-     >>> zone = client.zone('acme-co', 'example.com',
+     >>> zone = client.zone('acme-co', 'example.com.', #dns_name requires trailing dot
      ...                    description='Acme Company zone')
 
      >>> zone.exists()  # API request
@@ -105,7 +105,7 @@ Each managed zone exposes a read-only set of resource records:
 
      >>> from google.cloud import dns
      >>> client = dns.Client(project='PROJECT_ID')
-     >>> zone = client.zone('acme-co', 'example.com')
+     >>> zone = client.zone('acme-co', 'example.com.')
      >>> records, page_token = zone.list_resource_record_sets()  # API request
      >>> [(record.name, record.record_type, record.ttl, record.rrdatas)
      ...  for record in records]
@@ -139,7 +139,7 @@ bundling additions to or deletions from the set.
      >>> import time
      >>> from google.cloud import dns
      >>> client = dns.Client(project='PROJECT_ID')
-     >>> zone = client.zone('acme-co', 'example.com')
+     >>> zone = client.zone('acme-co', 'example.com.')
      >>> TWO_HOURS = 2 * 60 * 60  # seconds
      >>> record_set = zone.resource_record_set(
      ...    'www.example.com.', 'CNAME', TWO_HOURS, ['www1.example.com.',])
@@ -158,7 +158,7 @@ List changes made to the resource record set for a given zone:
 
      >>> from google.cloud import dns
      >>> client = dns.Client(project='PROJECT_ID')
-     >>> zone = client.zone('acme-co', 'example.com')
+     >>> zone = client.zone('acme-co', 'example.com.')
      >>> changes = []
      >>> changes, page_token = zone.list_changes()  # API request
 
