@@ -76,7 +76,7 @@ suffix and has a set of name servers that accept and responds to queries:
 
      >>> from google.cloud import dns
      >>> client = dns.Client(project='PROJECT_ID')
-     >>> zone = client.zone('acme-co', 'example.com',
+     >>> zone = client.zone('acme-co', 'example.com.', #dns_name requires trailing dot
      ...                    description='Acme Company zone')
 
      >>> zone.exists()  # API request
