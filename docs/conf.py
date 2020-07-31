@@ -43,7 +43,7 @@ extensions = [
 
 # autodoc/autosummary flags
 autoclass_content = "both"
-autodoc_default_options = {"members": True}
+autodoc_default_flags = ["members"]
 autosummary_generate = True
 
 
@@ -290,7 +290,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, "google-cloud-dns", u"google-cloud-dns Documentation", [author], 1,)
+    (master_doc, "google-cloud-dns", u"google-cloud-dns Documentation", [author], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -331,7 +331,7 @@ texinfo_documents = [
 intersphinx_mapping = {
     "python": ("http://python.readthedocs.org/en/latest/", None),
     "google-auth": ("https://google-auth.readthedocs.io/en/stable", None),
-    "google.api_core": ("https://googleapis.dev/python/google-api-core/latest/", None,),
+    "google.api_core": ("https://googleapis.dev/python/google-api-core/latest/", None),
     "grpc": ("https://grpc.io/grpc/python/", None),
 }
 
