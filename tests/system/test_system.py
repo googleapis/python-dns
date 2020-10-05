@@ -18,7 +18,6 @@
 from google.cloud import dns
 
 
-
 def test_quota():
     client = dns.Client()
 
