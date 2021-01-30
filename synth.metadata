@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-dns.git",
-        "sha": "142d2e777ccaf857d5455c4640f6d0502fad89e0"
+        "sha": "f152e70cd2dfd21a509da5fe956b35b290ae16ad"
       }
     },
     {
