@@ -9,11 +9,6 @@
 
 ### Features
 
-* add Samples section to CONTRIBUTING.rst ([#67](https://www.github.com/googleapis/python-dns/issues/67)) ([8dd7cd6](https://www.github.com/googleapis/python-dns/commit/8dd7cd624d613bf688099e329b8b269500e08c80))
-
-
-### Bug Fixes
-
 * require python 3.6 ([#61](https://www.github.com/googleapis/python-dns/issues/61)) ([56ab29f](https://www.github.com/googleapis/python-dns/commit/56ab29f35e0fda4f290f7cf2697466928080bd2f))
 
 ### [0.32.3](https://www.github.com/googleapis/python-dns/compare/v0.32.2...v0.32.3) (2021-05-27)
