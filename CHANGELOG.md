@@ -11,7 +11,7 @@
 
 * add support for Python 3.10 ([#121](https://www.github.com/googleapis/python-dns/issues/121)) ([af8be30](https://www.github.com/googleapis/python-dns/commit/af8be306e5c8512602e739471c016d84b4b46759))
 
-### [0.33.1](https://www.github.com/googleapis/python-dns/compare/v0.33.0...v0.33.1) (2021-09-20)
+## [0.33.1](https://www.github.com/googleapis/python-dns/compare/v0.33.0...v0.33.1) (2021-09-20)
 
 
 ### Bug Fixes
@@ -25,21 +25,21 @@
 
 * require python 3.6 ([#61](https://www.github.com/googleapis/python-dns/issues/61)) ([56ab29f](https://www.github.com/googleapis/python-dns/commit/56ab29f35e0fda4f290f7cf2697466928080bd2f))
 
-### [0.32.3](https://www.github.com/googleapis/python-dns/compare/v0.32.2...v0.32.3) (2021-05-27)
+## [0.32.3](https://www.github.com/googleapis/python-dns/compare/v0.32.2...v0.32.3) (2021-05-27)
 
 
 ### Bug Fixes
 
 * require google-cloud-core >= 1.3.0 ([#38](https://www.github.com/googleapis/python-dns/issues/38)) ([3ba0456](https://www.github.com/googleapis/python-dns/commit/3ba0456e6df34845c8d601d6d359eed98bfc17cf))
 
-### [0.32.2](https://www.github.com/googleapis/python-dns/compare/v0.32.1...v0.32.2) (2021-02-11)
+## [0.32.2](https://www.github.com/googleapis/python-dns/compare/v0.32.1...v0.32.2) (2021-02-11)
 
 
 ### Documentation
 
 * **python:** update intersphinx for grpc and auth ([#30](https://www.github.com/googleapis/python-dns/issues/30)) ([142d2e7](https://www.github.com/googleapis/python-dns/commit/142d2e777ccaf857d5455c4640f6d0502fad89e0))
 
-### [0.32.1](https://www.github.com/googleapis/python-dns/compare/v0.32.0...v0.32.1) (2020-10-12)
+## [0.32.1](https://www.github.com/googleapis/python-dns/compare/v0.32.0...v0.32.1) (2020-10-12)
 
 
 ### Bug Fixes
