@@ -3,7 +3,7 @@ Python Client for Cloud DNS API
 
 |preview| |pypi| |versions|
 
-`Cloud DNS API`_: 
+`Cloud DNS API`_: provides methods that you can use to manage DNS for your applications.
 
 - `Client Library Documentation`_
 - `Product Documentation`_
