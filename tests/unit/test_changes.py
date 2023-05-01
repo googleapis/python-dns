@@ -147,7 +147,7 @@ class TestChanges(unittest.TestCase):
         zone = _Zone()
         changes = self._make_one(zone)
         rrs = ResourceRecordSet(
-            "test.example.com", "CNAME", 3600, ["www.example.com"], zone
+            "test.example.com", "CNAME", 3600, ["www.example.com"], {}, zone
         )
         changes.add_record_set(rrs)
         self.assertEqual(list(changes.additions), [rrs])
@@ -165,7 +165,7 @@ class TestChanges(unittest.TestCase):
         zone = _Zone()
         changes = self._make_one(zone)
         rrs = ResourceRecordSet(
-            "test.example.com", "CNAME", 3600, ["www.example.com"], zone
+            "test.example.com", "CNAME", 3600, ["www.example.com"], {}, zone
         )
         changes.delete_record_set(rrs)
         self.assertEqual(list(changes.deletions), [rrs])
@@ -195,12 +195,12 @@ class TestChanges(unittest.TestCase):
         changes = self._make_one(zone)
         changes.add_record_set(
             ResourceRecordSet(
-                "test.example.com", "CNAME", 3600, ["www.example.com"], zone
+                "test.example.com", "CNAME", 3600, ["www.example.com"], {}, zone
             )
         )
         changes.delete_record_set(
             ResourceRecordSet(
-                "test.example.com", "CNAME", 86400, ["other.example.com"], zone
+                "test.example.com", "CNAME", 86400, ["other.example.com"], {}, zone
             )
         )
 
@@ -228,12 +228,12 @@ class TestChanges(unittest.TestCase):
         changes = self._make_one(zone)
         changes.add_record_set(
             ResourceRecordSet(
-                "test.example.com", "CNAME", 3600, ["www.example.com"], zone
+                "test.example.com", "CNAME", 3600, ["www.example.com"], {}, zone
             )
         )
         changes.delete_record_set(
             ResourceRecordSet(
-                "test.example.com", "CNAME", 86400, ["other.example.com"], zone
+                "test.example.com", "CNAME", 86400, ["other.example.com"], {}, zone
             )
         )
 
@@ -338,6 +338,40 @@ class TestChanges(unittest.TestCase):
         self.assertEqual(req["method"], "GET")
         self.assertEqual(req["path"], "/%s" % PATH)
         self._verifyResourceProperties(changes, RESOURCE, zone)
+
+    def test__routing_policy_cleaner_falsy(self):
+        conn = _Connection()
+        client = _Client(project=self.PROJECT, connection=conn)
+        zone = _Zone(client)
+        changes = self._make_one(zone)
+        resource_dict = {
+            "name": "test.example.com",
+            "type": "A",
+            "ttl": 3600,
+            "rrdatas": [],
+            "routingPolicy": {},
+        }
+
+        cleaned = changes._routing_policy_cleaner(resource_dict)
+        self.assertTrue("rrdatas" not in cleaned)
+        self.assertTrue("routingPolicy" not in cleaned)
+
+    def test__routing_policy_cleaner_truthy(self):
+        conn = _Connection()
+        client = _Client(project=self.PROJECT, connection=conn)
+        zone = _Zone(client)
+        changes = self._make_one(zone)
+        resource_dict = {
+            "name": "test.example.com",
+            "type": "A",
+            "ttl": 3600,
+            "rrdatas": ["10.1.2.3"],
+            "routingPolicy": {"geo": {}},
+        }
+
+        cleaned = changes._routing_policy_cleaner(resource_dict)
+        self.assertTrue("rrdatas" in cleaned)
+        self.assertTrue("routingPolicy" in cleaned)
 
 
 class _Zone(object):

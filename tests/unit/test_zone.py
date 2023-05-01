@@ -68,6 +68,7 @@ class TestManagedZone(unittest.TestCase):
                 "ns-cloud1.googledomains.com",
                 "ns-cloud2.googledomains.com",
             ],
+            "routingPolicy": {},
         }
 
     def _verifyReadonlyResourceProperties(self, zone, resource):
@@ -194,9 +195,10 @@ class TestManagedZone(unittest.TestCase):
         RRS_TYPE = "CNAME"
         TTL = 3600
         RRDATAS = ["www.example.com"]
+        ROUTING_POLICY = {}
         client = _Client(self.PROJECT)
         zone = self._make_one(self.ZONE_NAME, self.DNS_NAME, client)
-        rrs = zone.resource_record_set(RRS_NAME, RRS_TYPE, TTL, RRDATAS)
+        rrs = zone.resource_record_set(RRS_NAME, RRS_TYPE, TTL, RRDATAS, ROUTING_POLICY)
         self.assertIsInstance(rrs, ResourceRecordSet)
         self.assertEqual(rrs.name, RRS_NAME)
         self.assertEqual(rrs.record_type, RRS_TYPE)
@@ -433,6 +435,7 @@ class TestManagedZone(unittest.TestCase):
                     "type": TYPE_1,
                     "ttl": TTL_1,
                     "rrdatas": RRDATAS_1,
+                    "routingPolicy": {},
                 },
                 {
                     "kind": "dns#resourceRecordSet",
@@ -440,6 +443,7 @@ class TestManagedZone(unittest.TestCase):
                     "type": TYPE_2,
                     "ttl": TTL_2,
                     "rrdatas": RRDATAS_2,
+                    "routingPolicy": {},
                 },
             ],
         }
@@ -488,6 +492,7 @@ class TestManagedZone(unittest.TestCase):
                     "type": TYPE_1,
                     "ttl": TTL_1,
                     "rrdatas": RRDATAS_1,
+                    "routingPolicy": {},
                 },
                 {
                     "kind": "dns#resourceRecordSet",
@@ -495,6 +500,7 @@ class TestManagedZone(unittest.TestCase):
                     "type": TYPE_2,
                     "ttl": TTL_2,
                     "rrdatas": RRDATAS_2,
+                    "routingPolicy": {},
                 },
             ]
         }
@@ -553,6 +559,7 @@ class TestManagedZone(unittest.TestCase):
                             "type": type_1,
                             "ttl": ttl_1,
                             "rrdatas": rrdatas_1,
+                            "routingPolicy": {},
                         }
                     ],
                     "deletions": [
@@ -562,6 +569,7 @@ class TestManagedZone(unittest.TestCase):
                             "type": type_2,
                             "ttl": ttl_2,
                             "rrdatas": rrdatas_2,
+                            "routingPolicy": {},
                         }
                     ],
                 }

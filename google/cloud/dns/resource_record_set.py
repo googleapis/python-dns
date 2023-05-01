@@ -35,15 +35,20 @@ class ResourceRecordSet(object):
     :type rrdatas: list of string
     :param rrdatas: one or more lines containing the resource data.
 
+    :type routing_policy: dict
+    :param routing_policy: a dict containing the record's routing_policy.
+        Pass an empty dict if not needed.
+
     :type zone: :class:`google.cloud.dns.zone.ManagedZone`
     :param zone: A zone which holds one or more record sets.
     """
 
-    def __init__(self, name, record_type, ttl, rrdatas, zone):
+    def __init__(self, name, record_type, ttl, rrdatas, routing_policy, zone):
         self.name = name
         self.record_type = record_type
         self.ttl = ttl
         self.rrdatas = rrdatas
+        self.routing_policy = routing_policy
         self.zone = zone
 
     @classmethod
@@ -62,5 +67,6 @@ class ResourceRecordSet(object):
         name = resource["name"]
         record_type = resource["type"]
         ttl = int(resource["ttl"])
-        rrdatas = resource["rrdatas"]
-        return cls(name, record_type, ttl, rrdatas, zone=zone)
+        rrdatas = resource.get("rrdatas", [])
+        routing_policy = resource.get("routingPolicy", {})
+        return cls(name, record_type, ttl, rrdatas, routing_policy, zone=zone)
