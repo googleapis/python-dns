@@ -188,25 +188,45 @@ class Changes(object):
             client = self.zone._client
         return client
 
+    @staticmethod
+    def _routing_policy_cleaner(rrs_dict):
+        """If ``routingPolicy`` or ``rrdatas`` are falsy, delete them.
+
+        :type rrs_dict: dict
+        :param rrs_dict: dict representation of a
+            :class:`google.cloud.dns.resource_record_set.ResourceRecordSet`.
+        """
+        if not rrs_dict["routingPolicy"]:
+            del rrs_dict["routingPolicy"]
+        if not rrs_dict["rrdatas"]:
+            del rrs_dict["rrdatas"]
+        return rrs_dict
+
     def _build_resource(self):
         """Generate a resource for ``create``."""
         additions = [
-            {
-                "name": added.name,
-                "type": added.record_type,
-                "ttl": str(added.ttl),
-                "rrdatas": added.rrdatas,
-            }
+            self._routing_policy_cleaner(
+                {
+                    "name": added.name,
+                    "type": added.record_type,
+                    "ttl": str(added.ttl),
+                    "rrdatas": added.rrdatas,
+                    "routingPolicy": added.routing_policy,
+                }
+            )
             for added in self.additions
         ]
 
         deletions = [
-            {
-                "name": deleted.name,
-                "type": deleted.record_type,
-                "ttl": str(deleted.ttl),
-                "rrdatas": deleted.rrdatas,
-            }
+            self._routing_policy_cleaner(
+                {
+                    "name": deleted.name,
+                    "type": deleted.record_type,
+                    "ttl": str(deleted.ttl),
+                    "rrdatas": deleted.rrdatas,
+                    "routingPolicy": deleted.routing_policy,
+                }
+            )
             for deleted in self.deletions
         ]
 

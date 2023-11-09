@@ -172,7 +172,7 @@ class ManagedZone(object):
             raise ValueError("Pass a string, or None")
         self._properties["nameServerSet"] = value
 
-    def resource_record_set(self, name, record_type, ttl, rrdatas):
+    def resource_record_set(self, name, record_type, ttl, rrdatas, routing_policy):
         """Construct a resource record set bound to this zone.
 
         :type name: str
@@ -187,10 +187,15 @@ class ManagedZone(object):
         :type rrdatas: list of string
         :param rrdatas: resource data for the RR
 
+        :type routing_policy: dict
+        :param routing_policy: a dict containing the record's routing_policy
+
         :rtype: :class:`google.cloud.dns.resource_record_set.ResourceRecordSet`
         :returns: a new ``ResourceRecordSet`` instance
         """
-        return ResourceRecordSet(name, record_type, ttl, rrdatas, zone=self)
+        return ResourceRecordSet(
+            name, record_type, ttl, rrdatas, routing_policy, zone=self
+        )
 
     def changes(self):
         """Construct a change set bound to this zone.
