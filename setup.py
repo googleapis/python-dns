@@ -28,9 +28,9 @@ package_root = os.path.abspath(os.path.dirname(__file__))
 
 version = None
 
-with open(os.path.join(package_root, 'google/cloud/dns/version.py')) as fp:
+with open(os.path.join(package_root, "google/cloud/dns/version.py")) as fp:
     version_candidates = re.findall(r"(?<=\")\d+.\d+.\d+(?=\")", fp.read())
-    assert (len(version_candidates) == 1)
+    assert len(version_candidates) == 1
     version = version_candidates[0]
 
 # Should be one of:
@@ -57,7 +57,9 @@ with io.open(readme_filename, encoding="utf-8") as readme_file:
 # Only include packages under the 'google' namespace. Do not include tests,
 # benchmarks, etc.
 packages = [
-    package for package in setuptools.find_namespace_packages() if package.startswith("google")
+    package
+    for package in setuptools.find_namespace_packages()
+    if package.startswith("google")
 ]
 
 setuptools.setup(
