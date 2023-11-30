@@ -4,7 +4,7 @@
 
 [1]: https://pypi.org/project/google-cloud-dns/#history
 
-## [0.35.0](https://github.com/googleapis/python-dns/compare/v0.34.2...v0.35.0) (2023-11-30)
+## [0.35.0rc1](https://github.com/googleapis/python-dns/compare/v0.34.2...v0.35.0rc1) (2023-11-30)
 
 
 ### Features
