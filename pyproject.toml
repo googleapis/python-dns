@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "google-cloud-dns"
+authors = [{ name = "Google LLC", email = "googleapis-packages@google.com" }]
+license = { text = "Apache 2.0" }
+requires-python = ">=3.7"
+description = "Google Cloud DNS API client library"
+readme = "README.rst"
+classifiers = [
+  # Should be one of:
+  # "Development Status :: 3 - Alpha"
+  # "Development Status :: 4 - Beta"
+  # "Development Status :: 5 - Production/Stable"
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: OS Independent",
+  "Topic :: Internet",
+]
+dependencies = [
+  # NOTE: Maintainers, please do not require google-cloud-core>=2.x.x
+  # Until this issue is closed
+  # https://github.com/googleapis/google-cloud-python/issues/10566
+  "google-cloud-core >= 1.4.4, < 3.0dev",
+]
+dynamic = ["version"]
+
+[project.urls]
+Repository = "https://github.com/googleapis/python-dns"
+
+[project.optional-dependencies]
+
+[tool.setuptools]
+
+[tool.setuptools.dynamic]
+version = { attr = "google.cloud.dns.version.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["google*"]
