@@ -30,6 +30,17 @@ templated_files = common.py_library(
 )
 s.move(templated_files, excludes=["docs/multiprocessing.rst", "README.rst"])
 
+s.replace(
+    ".kokoro/presubmit.cfg",
+    """# Format: //devtools/kokoro/config/proto/build.proto""",
+    """# Format: //devtools/kokoro/config/proto/build.proto
+
+env_vars: {
+    key: "NOX_SESSION"
+    value: "system-3.12 blacken mypy format"
+}""",
+)
+
 python.py_samples(skip_readmes=True)
 
 s.replace(
