@@ -60,7 +60,7 @@ s.replace(
 
 s.replace(
     "noxfile.py",
-    r'SYSTEM_TEST_PYTHON_VERSIONS: List[str] = ["3.8"]',
+    r'SYSTEM_TEST_PYTHON_VERSIONS: List\[str\] = \["3.8"\]',
     'SYSTEM_TEST_PYTHON_VERSIONS: List[str] = ["3.10", "3.11", "3.12", "3.13"]'
 )
 
