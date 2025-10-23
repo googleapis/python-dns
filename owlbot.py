@@ -27,6 +27,8 @@ common = gcp.CommonTemplates()
 # ----------------------------------------------------------------------------
 templated_files = common.py_library(
     microgenerator=True,
+    default_python_version="3.10",
+    system_test_python_versions=["3.10"],
 )
 s.move(templated_files, excludes=["docs/multiprocessing.rst", "README.rst"])
 
@@ -57,19 +59,6 @@ s.replace(
     session.install\("--pre", "grpcio!=1.52.0rc1"\)""",
     ""
 )
-
-s.replace(
-    "noxfile.py",
-    'DEFAULT_PYTHON_VERSION = "3.8"',
-    'DEFAULT_PYTHON_VERSION = "3.10"'
-)
-
-s.replace(
-    "noxfile.py",
-    r'SYSTEM_TEST_PYTHON_VERSIONS: List\[str\] = \["3.8"\]',
-    'SYSTEM_TEST_PYTHON_VERSIONS: List[str] = ["3.10"]'
-)
-
 
 s.shell.run(["nox", "-s", "blacken"], hide_output=False)
 
