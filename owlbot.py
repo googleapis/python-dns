@@ -51,5 +51,19 @@ s.replace(
     session.install\("--pre", "grpcio!=1.52.0rc1"\)""",
     ""
 )
+
+s.replace(
+    "noxfile.py",
+    "DEFAULT_PYTHON_VERSION = '3.8'",
+    "DEFAULT_PYTHON_VERSION = '3.10'"
+)
+
+s.replace(
+    "noxfile.py",
+    "SYSTEM_TEST_PYTHON_VERSIONS: List[str] = ['3.8']",
+    "SYSTEM_TEST_PYTHON_VERSIONS: List[str] = ['3.10']"
+)
+
+
 s.shell.run(["nox", "-s", "blacken"], hide_output=False)
 
