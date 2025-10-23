@@ -31,6 +31,12 @@ templated_files = common.py_library(
 s.move(templated_files, excludes=["docs/multiprocessing.rst", "README.rst"])
 
 s.replace(
+    ".github/workflows/lint.yml",
+    'python-version: "3.8"',
+    'python-version: "3.10"'
+)
+
+s.replace(
     ".kokoro/presubmit/presubmit.cfg",
     """# Format: //devtools/kokoro/config/proto/build.proto""",
     """# Format: //devtools/kokoro/config/proto/build.proto
