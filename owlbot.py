@@ -37,7 +37,7 @@ s.replace(
 
 env_vars: {
     key: "NOX_SESSION"
-    value: "system-3.12 blacken mypy format"
+    value: "system-3.8 blacken format"
 }""",
 )
 
