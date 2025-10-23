@@ -37,7 +37,7 @@ s.replace(
 
 env_vars: {
     key: "NOX_SESSION"
-    value: "system-3.10 blacken format"
+    value: "system blacken format"
 }""",
 )
 
