@@ -42,6 +42,7 @@ UNIT_TEST_PYTHON_VERSIONS: List[str] = [
     "3.11",
     "3.12",
     "3.13",
+    "3.14",
 ]
 UNIT_TEST_STANDARD_DEPENDENCIES = [
     "mock",
@@ -370,7 +371,7 @@ def docfx(session):
     )
 
 
-@nox.session(python="3.13")
+@nox.session(python="3.14")
 @nox.parametrize(
     "protobuf_implementation",
     ["python", "upb", "cpp"],
