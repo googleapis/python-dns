@@ -34,6 +34,12 @@ templated_files = common.py_library(
 s.move(templated_files, excludes=["docs/multiprocessing.rst", "README.rst"])
 
 s.replace(
+    "noxfile.py",
+    '''session.python in ("3.11", "3.12", "3.13")''',
+    '''session.python in ("3.11", "3.12", "3.13", "3.14")'''
+)
+
+s.replace(
     ".kokoro/presubmit/presubmit.cfg",
     """# Format: //devtools/kokoro/config/proto/build.proto""",
     """# Format: //devtools/kokoro/config/proto/build.proto
