@@ -72,12 +72,7 @@ SYSTEM_TEST_EXTRAS_BY_PYTHON: Dict[str, List[str]] = {}
 CURRENT_DIRECTORY = pathlib.Path(__file__).parent.absolute()
 
 nox.options.sessions = [
-    "unit-3.9",
-    "unit-3.10",
-    "unit-3.11",
-    "unit-3.12",
-    "unit-3.13",
-    "unit-3.14",
+    "unit",
     "system",
     "cover",
     "lint",
@@ -180,9 +175,6 @@ def install_unittest_dependencies(session, *constraints):
 )
 def unit(session, protobuf_implementation):
     # Install all test dependencies, then install this package in-place.
-
-    if session.python in ("3.7", "3.8") and os.environ.get("TRAMPOLINE_IMAGE"):
-        session.skip("skipping Python 3.7 and 3.8 in kokoro tests")
 
     if protobuf_implementation == "cpp" and session.python in (
         "3.11",
