@@ -72,12 +72,7 @@ SYSTEM_TEST_EXTRAS_BY_PYTHON: Dict[str, List[str]] = {}
 CURRENT_DIRECTORY = pathlib.Path(__file__).parent.absolute()
 
 nox.options.sessions = [
-    "unit-3.9",
-    "unit-3.10",
-    "unit-3.11",
-    "unit-3.12",
-    "unit-3.13",
-    "unit-3.14",
+    "unit",
     "system",
     "cover",
     "lint",
