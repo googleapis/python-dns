@@ -41,7 +41,7 @@ s.replace(
 
 s.replace(
     "noxfile.py",
-    """nox.options.sessions = [
+    """nox.options.sessions = \[
     "unit",
 	""",
     """nox.options.sessions = [
