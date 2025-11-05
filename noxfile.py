@@ -35,6 +35,8 @@ LINT_PATHS = ["docs", "google", "tests", "noxfile.py", "setup.py"]
 DEFAULT_PYTHON_VERSION = "3.10"
 
 UNIT_TEST_PYTHON_VERSIONS: List[str] = [
+    "3.7",
+    "3.8",
     "3.9",
     "3.10",
     "3.11",
@@ -173,6 +175,9 @@ def install_unittest_dependencies(session, *constraints):
 )
 def unit(session, protobuf_implementation):
     # Install all test dependencies, then install this package in-place.
+
+    if session.python in ("3.7", "3.8") and os.environ.get("TRAMPOLINE_IMAGE"):
+        session.skip("skipping Python 3.7 and 3.8 in kokoro tests")
 
     if protobuf_implementation == "cpp" and session.python in (
         "3.11",
