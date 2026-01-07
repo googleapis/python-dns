@@ -32,7 +32,7 @@ class TestManagedZone(unittest.TestCase):
 
     def _setUpConstants(self):
         import datetime
-        from google.cloud._helpers import UTC
+        from datetime import timezone
 
         year = 2015
         month = 7
@@ -52,7 +52,7 @@ class TestManagedZone(unittest.TestCase):
             micros,
         )
         self.WHEN = datetime.datetime(
-            year, month, day, hour, minute, seconds, micros, tzinfo=UTC
+            year, month, day, hour, minute, seconds, micros, tzinfo=timezone.utc
         )
         self.ZONE_ID = 12345
 
@@ -529,8 +529,6 @@ class TestManagedZone(unittest.TestCase):
         self.assertEqual(req["query_params"], {"maxResults": 3, "pageToken": TOKEN})
 
     def _get_changes(self, token, changes_name):
-        from google.cloud._helpers import _datetime_to_rfc3339
-
         name_1 = "www.example.com"
         type_1 = "A"
         ttl_1 = "86400"
@@ -545,7 +543,7 @@ class TestManagedZone(unittest.TestCase):
                     "kind": "dns#change",
                     "id": changes_name,
                     "status": "pending",
-                    "startTime": _datetime_to_rfc3339(self.WHEN),
+                    "startTime": self.WHEN_STR,
                     "additions": [
                         {
                             "kind": "dns#resourceRecordSet",

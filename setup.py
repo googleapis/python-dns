@@ -43,6 +43,7 @@ dependencies = [
     # Until this issue is closed
     # https://github.com/googleapis/google-cloud-python/issues/10566
     "google-cloud-core >= 1.4.4, < 3.0.0",
+    "importlib-metadata >= 3.6.0; python_version < '3.10'",
 ]
 extras = {}
 
