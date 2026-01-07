@@ -30,18 +30,13 @@ class TestChanges(unittest.TestCase):
         return self._get_target_class()(*args, **kw)
 
     def _setUpConstants(self):
-        import datetime
-        from datetime import timezone
+        from google.cloud._helpers import UTC
+        from google.cloud._helpers import _NOW
 
-        self.WHEN = datetime.datetime.now(timezone.utc)
+        self.WHEN = _NOW().replace(tzinfo=UTC)
 
     def _make_resource(self):
-        import datetime
-        from datetime import timezone
-
-        # Helper to format datetime as RFC 3339 string
-        def _datetime_to_rfc3339(dt):
-            return dt.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+        from google.cloud._helpers import _datetime_to_rfc3339
 
         when_str = _datetime_to_rfc3339(self.WHEN)
         return {
@@ -68,18 +63,7 @@ class TestChanges(unittest.TestCase):
         }
 
     def _verifyResourceProperties(self, changes, resource, zone):
-        import datetime
-        from datetime import timezone
-
-        # Helper to parse RFC 3339 string to datetime
-        def _rfc3339_to_datetime(dt_str):
-            # The tests use microsecond precision, but strptime %f expects exactly 6 digits
-            # if we use %fZ. However, our manual formatting produces 6 digits.
-            # If we used real data, it might vary.
-            # For this test, we control the input format via _make_resource.
-            return datetime.datetime.strptime(dt_str, "%Y-%m-%dT%H:%M:%S.%fZ").replace(
-                tzinfo=timezone.utc
-            )
+        from google.cloud._helpers import _rfc3339_to_datetime
 
         self.assertEqual(changes.name, resource["id"])
         started = _rfc3339_to_datetime(resource["startTime"])
